@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donasi Multimedia Gereja ONKP SIONOBANUA</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+/* --- Efek sinar lembut untuk gambar Tuhan Yesus --- */
+.logo-yesus {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  object-fit: cover;
+  padding: 6px;
+  background: radial-gradient(circle, rgba(255,255,255,0.8), transparent 70%);
+  box-shadow:
+    0 0 20px rgba(255, 255, 200, 0.8),
+    0 0 40px rgba(255, 255, 150, 0.5),
+    0 0 60px rgba(255, 255, 120, 0.3);
+  animation: glowPulse 3s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow:
+    0 0 15px rgba(255, 255, 200, 0.6),
+    0 0 30px rgba(255, 255, 150, 0.4),
+    0 0 50px rgba(255, 255, 120, 0.2); }
+  50% { box-shadow:
+    0 0 25px rgba(255, 255, 230, 1),
+    0 0 50px rgba(255, 255, 180, 0.7),
+    0 0 80px rgba(255, 255, 140, 0.5); }
+  100% { box-shadow:
+    0 0 15px rgba(255, 255, 200, 0.6),
+    0 0 30px rgba(255, 255, 150, 0.4),
+    0 0 50px rgba(255, 255, 120, 0.2); }
+}
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #003366;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin-top: 10px;
+    }
+
+    nav ul li {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .banner {
+      background: url('gambar5.jpg') no-repeat center/cover;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .banner::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+#video-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.5;
+}
+.banner-content {
+  position: relative;
+  z-index: 1;
+}
+
+    .banner-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #ffcc00;
+      color: #003366;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #ffdd33;
+    }
+.btn {
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
+.btn:hover {
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+}
+
+header h1 {
+  text-shadow: 0 0 10px gold;
+}
+
+    section {
+      padding: 50px 10%;
+    }
+
+    section h2 {
+      text-align: center;
+      color: #003366;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    .tentang p {
+      text-align: justify;
+      margin-bottom: 15px;
+    }
+
+    .alat {
+      list-style: square inside;
+      margin-left: 10px;
+    }
+
+    .galeri {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    . .galeri {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .galeri img {
+      width: 100%;
+      border-radius: 10px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .galeri img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 60px;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .lightbox img {
+      display: block;
+      margin: auto;
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 10px;
+      animation: zoomIn 0.4s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.6); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+/* Tombol close */
+.close-btn {
+  position: absolute;
+  top: 25px;
+  right: 45px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.close-btn:hover {
+  color: #ffcc00;
+}
+
+/* Tombol navigasi kiri-kanan */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  transition: 0.3s;
+  user-select: none;
+}
+.prev:hover, .next:hover {
+  color: #ffcc00;
+}
+.prev { left: 30px; }
+.next { right: 30px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background: #003366;
+      color: white;
+    }
+
+    /* --- PROGRESS BAR STYLE --- */
+    .progress-container {
+      background: #ddd;
+      border-radius: 25px;
+      overflow: hidden;
+      height: 25px;
+      margin: 20px 0;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, #ffcc00, #ffaa00);
+      height: 100%;
+      width: 0;
+      text-align: center;
+      color: #003366;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: width 1.5s ease-in-out;
+    }
+
+    /* SHARE BUTTONS */
+    .share-container {
+      text-align: center;
+      margin-top: 30px;
+      background: #f0f4ff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .share-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .share-btn {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .share-btn.wa { background: #25D366; }
+    .share-btn.fb { background: #1877F2; }
+    .share-btn.copy { background: #ffcc00; color: #003366; }
+
+    .share-btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* BACK TO TOP */
+    #backToTop {
+      display: none;
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #003366;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 12px 15px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: 0.3s;
+    }
+    #backToTop:hover {
+      background: #ffcc00;
+      color: #003366;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    footer {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+/* --- Tambahan untuk logo di header --- */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding: 10px 20px;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: white;
+  padding: 5px;
+  box-shadow: 0 0 6px rgba(255,255,255,0.5);
+}
+
+.judul h1 {
+  font-size: 22px;
+  line-height: 1.3;
+  color: white;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    width: 55px;
+    height: 55px;
+  }
+  .judul h1 {
+    font-size: 18px;
+  }
+}
+
+  </style>
+</head>
+<button id="backToTop" title="Kembali ke atas">⬆️</button>
+
+<script>
+const btn = document.getElementById("backToTop");
+window.onscroll = function() {
+  if (document.documentElement.scrollTop > 300) btn.style.display = "block";
+  else btn.style.display = "none";
+};
+btn.onclick = function() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+};
+</script>
+
+<body>
+
+  <header>
+  <div class="header-content">
+    <img src="logogereja.png" alt="Logo Gereja ONKP Sionobanua" class="logo">
+    <div class="judul">
+      <h1>PROGRAM PENGADAAN ALAT MULTIMEDIA<br>GEREJA ONKP SIONOBANUA</h1>
+      <marquee behavior="scroll" direction="left" scrollamount="6" style="color: gold; font-weight:bold; font-size:18px; margin-top:8px;">
+        🙏 Mari ambil bagian dalam Donasi Pengadaan Alat Multimedia Gereja ONKP Si'onobanua 💛
+      </marquee>
+    </div>
+	<img src="God.jpg" alt="Tuhan Yesus" class="logo-yesus">
+    </div>
+  </div>
+
+  <nav>
+    <ul>
+      <li><a href="#beranda">Beranda</a></li>
+      <li><a href="#tentang">Tentang</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#donasi">Donasi</a></li>
+      <li><a href="#laporan">Laporan</a></li>
+      <li><a href="#kontak">Kontak</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+  <section class="banner" id="beranda">
+  <video autoplay muted loop id="video-bg">
+    <source src="kalakucaridamai.mp4" type="video/mp4">
+  </video>
+  <div class="banner-content">
+    <h2>“Mari Ambil Bagian Dalam Pelayanan Tuhan”</h2>
+    <p>Setiap donasi Anda membantu memperlengkapi pelayanan Gereja kita.</p>
+    <a href="#donasi" class="btn">Donasi Sekarang</a>
+  </div>
+</section>
+
+
+  <section class="tentang" id="tentang">
+    <h2>Tentang Program</h2>
+    <p>Program ini bertujuan untuk meningkatkan kualitas ibadah dan pelayanan dengan menyediakan perangkat multimedia di Gereja ONKP SIONOBANUA, Desa Sitolubanua Fadoro, Kecamatan Moro’o, Kabupaten Nias Barat.</p>
+    <p>“Kita percaya, pelayanan yang baik dimulai dari hati yang mau memberi. Yuk, ambil bagian dalam donasi pengadaan alat multimedia gereja kita! Bersama, kita ciptakan suasana ibadah yang lebih nyaman, penuh semangat, dan menjangkau lebih banyak jiwa.”.</p>
+
+    <p><strong>Alat yang Dibutuhkan Saat Ini :</strong></p>
+    <ul class="alat">
+      <li>Keyboard Yamaha PSR SX720 Arranger Harga Rp. 16.700.000</li>
+      <li>Speaker Aktif Wireles Portabel Dusenberg Harga Rp. 3.600.000</li>
+      <li>Mixer audio Luxsona 4/6  Harga Rp. 600.000</li>
+      <li>Kabel & instalasi pendukung Harga Rp. 500.000</li>
+    </ul>
+  </section>
+
+  <section id="galeri">
+  <h2>Galeri</h2>
+  <div class="galeri">
+    <img src="gambar1.jpg" alt="Gereja" onclick="openLightbox(0)">
+    <img src="gambar2.jpg" alt="Kegiatan Gereja" onclick="openLightbox(1)">
+    <img src="gambar3.jpg" alt="Pelayanan Multimedia" onclick="openLightbox(2)">
+    <img src="gambar4.jpg" alt="Ibadah" onclick="openLightbox(3)">
+    <img src="gambar5.jpg" alt="Gereja Malam Hari" onclick="openLightbox(4)">
+  </div>
+
+  <!-- Lightbox Pop-up -->
+  <div id="lightbox" class="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="" alt="Zoom Gambar">
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+  </div>
+</section>
+
+
+  <section id="donasi"><div style="text-align:center; margin-top:20px;">
+  <a href="https://wa.me/?text=Ayo%20dukung%20program%20Donasi%20Alat%20Multimedia%20Gereja%20ONKP%20SIONOBANUA!%20Kunjungi%20https://contohwebsite.com"
+     target="_blank" 
+     class="btn" 
+     style="background:#25D366;color:white;">
+    📤 Bagikan via WhatsApp
+  </a>
+</div>
+
+    <h2>Cara Berdonasi</h2>
+    <p>Anda dapat berdonasi melalui rekening atau secara langsung kepada panitia.</p>
+
+    <table>
+      <tr>
+        <th>E-Wallet</th>
+        <th>No. Dana</th>
+        <th>Atas Nama</th>
+        <th>Keterangan</th>
+      </tr>
+      <tr>
+        <td>E-Wallet DANA</td>
+        <td>0813-7600-0100</td>
+        <td>Julifati Gulo (Ketua Pemuda/Panitia)</td>
+        <td>Donasi Alat Multimedia</td>
+      </tr>
+    </table>
+  </section>
+
+  <section id="laporan">
+  <h2>Laporan & Transparansi</h2>
+    <p>Target Donasi: <strong>Rp 22.000.000</strong></p>
+    <p>Masukkan jumlah donasi terkumpul:</p>
+
+    <input type="number" id="donasiInput" placeholder="Masukkan jumlah (Rp)" style="padding:8px; border-radius:5px; border:1px solid #ccc;">
+    <button onclick="updateDonasi()" class="btn">Update Progress</button>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar">0%</div><div style="text-align:center; margin-top:20px;">
+	  <script>
+let currentIndex = 0;
+const images = [
+  "gambar1.jpg",
+  "gambar2.jpg",
+  "gambar3.jpg",
+  "gambar4.jpg",
+  "gambar5.jpg"
+];
+
+function openLightbox(index) {
+  currentIndex = index;
+  document.getElementById("lightbox").style.display = "block";
+  document.getElementById("lightbox-img").src = images[index];
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").style.display = "none";
+}
+
+function changeSlide(step) {
+  currentIndex += step;
+  if (currentIndex >= images.length) currentIndex = 0;
+  if (currentIndex < 0) currentIndex = images.length - 1;
+  document.getElementById("lightbox-img").src = images[currentIndex];
+}
+
+// Tutup lightbox dengan klik di luar gambar
+document.getElementById("lightbox").addEventListener("click", function(e) {
+  if (e.target === this) closeLightbox();
+});
+</script>
+
+  <input type="number" id="donasiInput" placeholder="Masukkan jumlah donasi terkumpul (Rp)" style="padding:8px; border-radius:5px; border:1px solid #ccc;">
+  <button onclick="updateDonasi()" class="btn">Update Progress</button>
+</div>
+
+    </div>
+
+    <div class="share-container">
+      <p>💬 Bagikan informasi donasi ini agar lebih banyak yang ikut memberkati 🙏</p>
+      <div class="share-buttons">
+        <a href="https://wa.me/?text=Ayo%20dukung%20Donasi%20Alat%20Multimedia%20Gereja%20ONKP%20SIONOBANUA!%20Kunjungi%20https://contohwebsite.com" target="_blank" class="share-btn wa">📱 WhatsApp</a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://contohwebsite.com" target="_blank" class="share-btn fb">📘 Facebook</a>
+        <button onclick="copyLink()" class="share-btn copy">🔗 Salin Tautan</button>
+      </div>
+      <p id="copy-msg" style="color:green; display:none; font-weight:bold;">✅ Tautan berhasil disalin!</p>
+    </div>
+
+    <p style="text-align:center;">Setiap penggunaan dana akan dilaporkan secara berkala di halaman ini.</p>
+  </section>
+  <section id="kontak">
+    <h2>Kontak Kami</h2>
+    <form>
+      <input type="text" placeholder="Nama Anda" required>
+      <input type="email" placeholder="Email (opsional)">
+      <textarea placeholder="Pesan atau Doa Dukungan" rows="4"></textarea>
+      <button type="submit" class="btn">Kirim Pesan</button>
+    </form>
+
+    <p style="text-align:center; margin-top:20px;">
+      📍 Desa Sitolubanua Fadoro, Kec. Moro’o, Kab. Nias Barat<br>
+      📞 0813-7600-0100 & 0852-1049-4525 Panitia | ✉️ gerejaonkpsionobanua@gmail.com
+    </p>
+  </section>
+
+  <footer>
+    <p>© 2025 Gereja ONKP SIONOBANUA – Semua hak dilindungi.</p>
+    <p>“Karena di mana hartamu berada, di situ juga hatimu berada.” — Matius 6:21 💛</p>
+  </footer>
+  
+ <button id="backToTop" title="Kembali ke atas">⬆️</button>
+  <script>
+   <script>
+  // Animasi Scroll
+  const sections = document.querySelectorAll("section");
+  window.addEventListener("scroll", () => {
+    const triggerBottom = window.innerHeight * 0.85;
+    sections.forEach(sec => {
+      const boxTop = sec.getBoundingClientRect().top;
+      if (boxTop < triggerBottom) sec.classList.add("show");
+    });
+  });
+
+  // Update Progress Donasi
+  let target = 22000000;
+  function updateDonasi() {
+    let terkumpul = parseInt(document.getElementById('donasiInput').value) || 0;
+    const persen = Math.round((terkumpul / target) * 100);
+    const bar = document.getElementById('progress-bar');
+    bar.style.width = persen + '%';
+    bar.textContent = persen + '%';
+  }
+
+  // Tombol Salin Link
+  function copyLink() {
+    const link = "https://contohwebsite.com";
+    navigator.clipboard.writeText(link).then(() => {
+      const msg = document.getElementById("copy-msg");
+      msg.style.display = "block";
+      setTimeout(() => msg.style.display = "none", 2500);
+    });
+  }
+
+  // Tombol Back To Top
+  const btn = document.getElementById("backToTop");
+  window.onscroll = function() {
+    if (document.documentElement.scrollTop > 300) btn.style.display = "block";
+    else btn.style.display = "none";
+  };
+  btn.onclick = function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  };
+  </script>
+
+</body>
+</html>
